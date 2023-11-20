@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Library Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="../assets/bootstrap/icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+  </head>
+  <body class="nav-fixed">
+    <%- include('../components/navbar.ejs') %>
+    <main class="main">
+      <header
+        class="page-header page-header-compact page-header-light border-bottom bg-white mb-4"
+      >
+        <div class="container-xl px-4">
+          <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+              <div class="col-auto mb-3">
+                <h2 class="page-header-title">Add Book</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Main page content-->
+      <div class="container-xl px-4 mt-4">
+        <div class="add-book">
+          <form method="post" action="/book/add">
+            <div class="mb-3">
+              <label for="bookTitle" class="form-label">Title</label>
+              <input
+                name="title"
+                type="text"
+                class="form-control"
+                id="bookTitle"
+                aria-describedby="bookTitleHelp"
+              />
+              <div id="bookTitleHelp" class="form-text">
+                We'll never share your email with anyone else.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="author" class="form-label">Author</label>
+              <input
+                name="author"
+                type="text"
+                class="form-control"
+                id="author"
+              />
+            </div>
+            <div class="mb-3">
+              <% const bookCategories = [ "Fiction", "Non-Fiction", "Mystery",
+              "Fantasy", "Science Fiction", "Romance", "Horror", "Biography",
+              "History", "Self-Help" ]; %>
+              <label for="category" class="form-label">Category</label>
+              <select
+                name="category"
+                type="text"
+                class="form-select"
+                id="category"
+              >
+                <% bookCategories.forEach(bookCategory => { %>
+                <option value="<%= bookCategory %>"><%= bookCategory %></option>
+                <% }) %>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="publisher" class="form-label">Publisher</label>
+              <input
+                name="publisher"
+                type="text"
+                class="form-control"
+                id="publisher"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input
+                name="price"
+                type="number"
+                class="form-control"
+                id="price"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Add new book</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <%- include('../components/footer.ejs') %>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

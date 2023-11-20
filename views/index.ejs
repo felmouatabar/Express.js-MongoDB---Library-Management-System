@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Library Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/bootstrap/icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+  </head>
+  <body class="nav-fixed">
+    <%- include('components/navbar.ejs') %>
+    <main class="main">
+      <header
+        class="page-header page-header-compact page-header-light border-bottom bg-white mb-4"
+      >
+        <div class="container-xl px-4">
+          <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+              <div class="col-auto mb-3">
+                <h2 class="page-header-title">Dashboard</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Main page content-->
+      <div class="container-xl px-4 mt-4">
+        <div class="books-list mb-4">
+          <div class="books-list-header d-flex justify-content-between">
+            <h4>Books List</h4>
+            <div>
+              <a href="/book/add" class="btn btn-md btn-primary" type="button">
+                Add New Book
+              </a>
+            </div>
+          </div>
+          <div class="books-list-body">
+            <% if (books.length == 0) { %>
+            <div class="alert alert-primary" role="alert">
+              No data available!
+            </div>
+            <% } else { %>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Category</th>
+                  <th>Publisher</th>
+                  <th>Price</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% books.forEach((book, index) => { %>
+                <tr>
+                  <th scope="row"><%= String(index + 1).padStart(3, '0') %></th>
+                  <td>
+                    <span class="fw-bold"><%= book.title %></span>
+                  </td>
+                  <td><%= book.author %></td>
+                  <td><%= book.category %></td>
+                  <td><%= book.publisher %></td>
+                  <td><%= book.price %> MAD</td>
+                  <td class="text-end">
+                    <a
+                      data-bs-toggle="tooltip"
+                      data-bs-title="View details"
+                      data-bs-placement="top"
+                      class="btn btn-secondary btn-sm"
+                      href="./book/<%= book._id %>"
+                      ><i class="bi bi-eye"></i
+                    ></a>
+
+                    <a
+                      data-bs-toggle="tooltip"
+                      data-bs-title="Edit user"
+                      data-bs-placement="top"
+                      class="btn btn-secondary btn-sm"
+                      href="./book/<%= book._id %>/edit"
+                    >
+                      <i class="bi bi-pencil"></i>
+                    </a>
+                    <form
+                      class="d-inline-block"
+                      action="./book/<%= book._id %>?_method=DELETE"
+                      method="post"
+                    >
+                      <button
+                        type="submit"
+                        data-bs-toggle="tooltip"
+                        data-bs-title="Delete user"
+                        data-bs-placement="top"
+                        class="btn btn-danger btn-sm"
+                      >
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('components/footer.ejs') %>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

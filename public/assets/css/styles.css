@@ -1,0 +1,32 @@
+:root {
+  --bs-font-sans-serif: 'Roboto', sans-serif;
+}
+.nav-fixed .topnav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+.topnav .navbar-nav .dropdown-user {
+
+}
+.topnav .search-form {
+  border: 0;
+  background-color: #eef2f8;
+  border-radius: 0.4375rem;
+}
+
+.main {
+  padding-top: 5rem;
+}
+.books-list .books-list-header {
+  margin-bottom: 1rem;
+}
+
+
+.footer {
+  padding: 1rem 0;
+  border-top: 1px solid #eee;
+  margin-top: 3rem;
+}

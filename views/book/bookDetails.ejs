@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Library Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="../assets/bootstrap/icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+  </head>
+  <body class="nav-fixed">
+    <%- include('../components/navbar.ejs') %>
+    <main class="main">
+      <header
+        class="page-header page-header-compact page-header-light border-bottom bg-white mb-4"
+      >
+        <div class="container-xl px-4">
+          <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+              <div class="col-auto mb-3">
+                <h2 class="page-header-title">Book Details</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Main page content-->
+      <div class="container-xl px-4 mt-4">
+        <div class="book-details">
+          <table
+            style="width: 88%"
+            class="ms-1 table mt-5 table-striped table-bordered"
+          >
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th><%= bookData.title %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Author</th>
+                <td><%= bookData.author %></td>
+              </tr>
+              <tr>
+                <th>Category</th>
+                <td><%= bookData.category %></td>
+              </tr>
+              <tr>
+                <th>Publisher</th>
+                <td><%= bookData.publisher %></td>
+              </tr>
+              <tr>
+                <th>Price</th>
+                <td><%= bookData.price %></td>
+              </tr>
+              <% var options = { day: 'numeric', month: 'numeric', year:
+              'numeric', hour: 'numeric', minute: 'numeric', hour12: false, };
+              var createdAtDate = new Date(bookData.createdAt); var
+              createdAtDateFormatted = createdAtDate.toLocaleDateString('en-GB',
+              options).replace(/,/g, ''); %>
+              <tr>
+                <th>Created on</th>
+                <td><%= createdAtDateFormatted %></td>
+              </tr>
+              <% var updatedAtDate = new Date(bookData.updatedAt); var
+              updatedAtDateFormatted = updatedAtDate.toLocaleDateString('en-GB',
+              options).replace(/,/g, ''); %>
+              <tr>
+                <th>Last Update</th>
+                <td><%= updatedAtDateFormatted %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <%- include('../components/footer.ejs') %>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
