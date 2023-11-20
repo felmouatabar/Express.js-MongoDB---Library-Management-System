@@ -1,9 +1,12 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 const mongoose = require("mongoose");
 const Books = require("./models/bookSchema");
 const methodOverride = require("method-override");
+
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -100,9 +103,7 @@ app.put("/book/:bookId/edit", (req, res) => {
 });
 
 mongoose
-  .connect(
-    "mongodb+srv://root:root@cluster0.ubluuat.mongodb.net/all-data?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_URL)
   .then(() => {
     app.listen(port, () => {
       console.log(`http://localhost:${port}`);
